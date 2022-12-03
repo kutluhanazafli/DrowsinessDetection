@@ -30,7 +30,7 @@ class MainApp(MDApp):
 
         # Variables
         self.EYE_ASPECT_RATIO_THRESHOLD = 0.3
-        self.EYE_ASPECT_RATIO_CONSEC_FRAMES = 50
+        self.EYE_ASPECT_RATIO_CONSEC_FRAMES = 32
         self.COUNTER = 0
 
         self.eye_closed_point = 0
@@ -55,6 +55,9 @@ class MainApp(MDApp):
 
     def build(self):
         Window.size = (400, 700)
+        self.title = 'Drowsiness Detection'
+        self.icon = 'icon.jpg'
+
         self.varibles()
         self.load_face()
         layout = MDBoxLayout(orientation='vertical')
@@ -81,7 +84,7 @@ class MainApp(MDApp):
         faces = self.detector(gray, 0)
         face_rectangle = self.face_cascade.detectMultiScale(gray, 1.3, 5)
         for (x, y, w, h) in face_rectangle:
-            cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
         for face in faces:
             shape = self.predictor(gray, face)
             shape = face_utils.shape_to_np(shape)
