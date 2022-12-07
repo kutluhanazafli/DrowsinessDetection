@@ -10,8 +10,6 @@ from kivy.graphics.texture import Texture
 from kivy.config import Config
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
-import cv2
-
 from scipy.spatial import distance
 from imutils import face_utils
 import time
@@ -30,7 +28,7 @@ class MainApp(MDApp):
 
         # Variables
         self.EYE_ASPECT_RATIO_THRESHOLD = 0.3
-        self.EYE_ASPECT_RATIO_CONSEC_FRAMES = 32
+        self.EYE_ASPECT_RATIO_CONSEC_FRAMES = 30
         self.COUNTER = 0
 
         self.eye_closed_point = 0
@@ -130,9 +128,4 @@ class MainApp(MDApp):
         return text
 if __name__ == '__main__':
     MainApp().run()
-
-
-
-
-
 
