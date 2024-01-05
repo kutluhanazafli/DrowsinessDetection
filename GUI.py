@@ -8,6 +8,7 @@ from kivy.clock import Clock
 from kivy.graphics.texture import Texture
 
 from kivy.config import Config
+
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
 from scipy.spatial import distance
@@ -18,7 +19,7 @@ import cv2
 import contextlib
 
 with contextlib.redirect_stdout(None):
-    import pygame
+    import pygame #2.0.2 version
 
 
 class MainApp(MDApp):
@@ -42,7 +43,7 @@ class MainApp(MDApp):
         B = distance.euclidean(eye[2], eye[4])
         C = distance.euclidean(eye[0], eye[3])
 
-        ear = (A+B) / (2 * C)
+        ear = (A + B) / (2 * C)
         return ear
 
     def load_face(self):
@@ -72,7 +73,7 @@ class MainApp(MDApp):
         layout.add_widget(self.RESULT_LABEL)
 
         self.CAPTURE = cv2.VideoCapture(0)
-        Clock.schedule_interval(self.load_video_with_control, 1.0/30.0)
+        Clock.schedule_interval(self.load_video_with_control, 1.0 / 30.0)
         return layout
 
     def load_video_with_control(self, *args):
@@ -126,6 +127,7 @@ class MainApp(MDApp):
         if self.open_score < self.closed_score:
             text += "\nIt has been determined that you are tired in the measurement made, you should take a break."
         return text
+
+
 if __name__ == '__main__':
     MainApp().run()
-
